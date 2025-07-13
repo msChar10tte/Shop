@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class ShopService {
-    private static final AtomicInteger orderIdCounter = new AtomicInteger(0);
+    private static AtomicInteger orderIdCounter = new AtomicInteger(0);
 
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
@@ -54,5 +54,9 @@ public class ShopService {
 
     public Optional<Order> findOrderById(int orderId) {
         return orderRepository.findById(orderId);
+    }
+
+    public static void resetOrderIdCounterForTests() {
+        orderIdCounter.set(0);
     }
 }
